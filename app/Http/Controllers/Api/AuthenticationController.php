@@ -3,24 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $data = $request->validate([
-            'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required', 'confirmed']
-        ]);
-
         $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
         ]);
 
         return $user;
