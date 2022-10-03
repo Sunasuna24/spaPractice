@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
 {
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request): User
     {
         $user = User::create([
             'name' => $request->name,
