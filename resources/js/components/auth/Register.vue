@@ -39,7 +39,7 @@ export default {
         async submit() {
             this.sending = true;
             try {
-                const response = await axios.post('/api/register', this.user);
+                const response = await axios.post('/register', this.user);
                 console.log(response);
             } catch (error) {
                 console.log(error);
